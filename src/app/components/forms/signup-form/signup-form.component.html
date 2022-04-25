@@ -1,0 +1,107 @@
+<section class="signup-form-section">
+  <h1>Signup Form</h1>
+
+  <div class="login-form-container">
+    <form [formGroup]="signupForm" class="signup-form">
+
+      <div class="form-item">
+        <label for="name">Name</label>
+        <input
+          [ngClass]="{'input-error': signupForm.controls['name'].touched && signupForm.controls['name'].invalid}"
+          class="form-text-input"
+          formControlName="name"
+          id="name"
+          type="text"/>
+
+        <small
+          *ngIf="signupForm.controls['name'].touched && signupForm.controls['name'].hasError('required')"
+          class="form-error">
+          This field is required.
+        </small>
+
+        <small
+          *ngIf="signupForm.controls['name'].touched && signupForm.controls['name'].hasError('minlength')"
+          class="form-error">
+          Min length is 5 characters.
+        </small>
+        </div>
+      <div class="form-item">
+        <label for="email2">Email</label>
+
+        <input
+          [ngClass]="{'input-error': signupForm.controls['email'].touched && signupForm.controls['email'].invalid}"
+          class="form-text-input"
+          formControlName="email"
+          id="email2"
+          type="text"/>
+
+        <small
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')"
+          class="form-error">
+          This field is required.
+        </small>
+
+        <small
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('email')"
+          class="form-error">
+          Wrong format.
+        </small>
+      </div>
+
+      <div class="form-item">
+        <label for="password2">Password</label>
+        <input
+          [ngClass]="{'input-error': signupForm.controls['password'].touched && signupForm.controls['password'].invalid}"
+          class="form-text-input"
+          formControlName="password"
+          id="password2"
+          type="password"/>
+
+        <small
+          *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('required')"
+          class="form-error">
+          This field is required.
+        </small>
+
+        <small
+          *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('minLength')"
+          class="form-error">
+          Min length is 5 characters.
+        </small>
+      </div>
+      <div class="form-item">
+      </div>
+
+      <select formControlName="country">
+        <option [value]="''" disabled>Select a country</option>
+        <option *ngFor="let country of countries" [value]="country.countryCode">{{ country.title}}</option>
+      </select>
+
+      <div class="form-radio-btn" *ngFor="let gender of genders">
+        <input id="{{ gender.gender}}" type="radio" [value]="gender.gender" formControlName="gender">
+        <label for="{{ gender.gender}}">{{ gender.gender}}</label>
+      </div>
+
+      <div class="form-item">
+      <label>
+        <input
+          [ngClass]="{'input-error': signupForm.controls['verify'].touched && signupForm.controls['verify'].invalid}"
+          formControlName="verify"
+          type="checkbox"/>
+        I am not a robot
+      </label>
+        <small
+          *ngIf="signupForm.controls['verify'].touched && signupForm.controls['verify'].hasError('required')"
+          class="form-error">
+          This field is required.
+        </small>
+      </div>
+      <div class="form-item">
+      </div>
+      <div class="signup-btn-container">
+        <button (click)="signup()" class="signup-btn" type="button" >Submit</button>
+      </div>
+
+    </form>
+  </div>
+</section>
